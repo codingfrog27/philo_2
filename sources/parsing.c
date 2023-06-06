@@ -18,7 +18,7 @@ t_philo	*philo_init(t_data	*data)
 	t_philo			*philos;
 
 	i = 0;
-	philos = malloc(sizeof(t_philo) * data->nbr_of_philos);
+	philos = malloc(sizeof(t_philo) * (data->nbr_of_philos);
 	if (!philos)
 		return (NULL); //needs actual protection
 	while (i < data->nbr_of_philos)

@@ -34,8 +34,16 @@ typedef struct s_philo
 	pthread_mutex_t	*right_fork;
 	long			last_mealtime;
 	t_data			*data;
-	pthread_t		thread;
 }				t_philo;
+
+typedef enum e_msg_types
+{
+	death,
+	thinking,
+	eating,
+	sleeping,
+}	t_msg_types;
+
 //also using mealcheck to see if philo is alive + as start lock?
 struct s_data
 {
@@ -43,14 +51,15 @@ struct s_data
 	int				time_till_death;
 	int				time_to_eat;
 	int				sleep_time;
-	long			start_time;
-	pthread_mutex_t	living_mutex;
-	bool			all_alive;
-	bool			finish_when_full;
 	int				meals_needed;
 	int				full_philos;
+	long			start_time;
+	bool			all_alive;
+	bool			finish_when_full;
+	pthread_mutex_t	print_lock;
 	pthread_mutex_t	*forks;
-	t_philo			*philos;
+	t_philo			*philo_arr;
+	pthread_t		*thread_ids;
 };
 
 bool	parsing_args(int argc, char **argv, t_data *data);
