@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-void	philo_print(long timestamp, t_msg_types msg, )
+void	philo_print(long timestamp, t_msg_types msg, int philo_id)
 {
-
+	const char str[][] = {""};
 }
