@@ -30,6 +30,12 @@ int	join_threads_and_end(t_data *data, int i)
 	free(data->thread_ids);
 }
 
+void	philo_has_died(t_data *data, int dead_philo_nbr)
+{
+	printf("philo %i has died", dead_philo_nbr);
+	join_threads_and_end(data, data->nbr_of_philos);
+}
+
 int	monitor_in_parent_thread(t_data *data)
 {
 	int	i;
@@ -39,7 +45,7 @@ int	monitor_in_parent_thread(t_data *data)
 	while(i < data->nbr_of_philos)
 	{
 		if (data->philo_arr[i].last_mealtime > data->time_till_death)
-
+			philo_has_died(data, i);
 	}
 	pthread_mutex_unlock(&data->print_lock);
 }
@@ -47,7 +53,6 @@ int	monitor_in_parent_thread(t_data *data)
 void	start_simulation(t_data *data)
 {
 	int	i;
-
 	i = 0;
 	pthread_mutex_lock(&data->print_lock);
 	while (i < data->nbr_of_philos)
